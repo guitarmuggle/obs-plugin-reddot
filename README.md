@@ -1,59 +1,48 @@
-# OBS Plugin Template
+# OBS RedDot Indicator Plugin
 
-## Introduction
+A simple OBS plugin for Windows that displays a small red circle overlay in the top-right corner of your screen whenever you are recording. This provides visual status feedback even while playing games in fullscreen mode without a second monitor.
 
-The plugin template is meant to be used as a starting point for OBS Studio plugin development. It includes:
+## Features
+- **Visual Feedback**: Displays a 15x15 red circle at the top-right of your primary screen.
+- **Automatic**: Appears when recording starts and disappears when it stops.
+- **Topmost Overlay**: Stays on top of most windows.
+- **Transparent & Click-Through**: Won't interfere with mouse clicks or game interactions.
 
-* Boilerplate plugin source code
-* A CMake project file
-* GitHub Actions workflows and repository actions
+## Installation
+1.  Navigate to the project root: `C:\Users\IOSYS\obs-plugin-reddot`.
+2.  Run the **`install.bat`** script (Right-click > Run as Administrator).
+3.  The script will copy `obs-plugin-reddot.dll` to your OBS Studio directory (`C:\Program Files\obs-studio\obs-plugins\64bit\`).
+4.  Restart **OBS Studio**.
 
-## Supported Build Environments
+## Distribution & Required Files
+If you want to share this plugin or install it on another PC, you only need one file:
 
-| Platform  | Tool   |
-|-----------|--------|
-| Windows   | Visual Studio 17 2022 |
-| macOS     | XCode 16.0 |
-| Windows, macOS  | CMake 3.30.5 |
-| Ubuntu 24.04 | CMake 3.28.3 |
-| Ubuntu 24.04 | `ninja-build` |
-| Ubuntu 24.04 | `pkg-config`
-| Ubuntu 24.04 | `build-essential` |
+*   **`obs-plugin-reddot.dll`**
 
-## Quick Start
+### How to install manually on another PC:
+1.  Copy `obs-plugin-reddot.dll` to the destination PC.
+2.  Paste it into the OBS Studio plugin folder:
+    `C:\Program Files\obs-studio\obs-plugins\64bit\`
+3.  Restart OBS Studio.
 
-An absolute bare-bones [Quick Start Guide](https://github.com/obsproject/obs-plugintemplate/wiki/Quick-Start-Guide) is available in the wiki.
+*Note: No other files (like `data` folders or `.txt` files) are required for this plugin to function.*
 
-## Documentation
+## Usage Note
+- This plugin uses the Win32 API to create an overlay. It works best in **Borderless Fullscreen** or **Windowed** modes.
+- In **Exclusive Fullscreen**, some games may block third-party overlays.
 
-All documentation can be found in the [Plugin Template Wiki](https://github.com/obsproject/obs-plugintemplate/wiki).
+## Build Instructions
+If you wish to re-compile the plugin:
+1.  Open PowerShell in the project root.
+2.  Run the following commands:
+    ```powershell
+    $cmake = "C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe"
+    & $cmake --preset windows-x64
+    & $cmake --build --preset windows-x64
+    ```
+3.  The compiled DLL will be in the root and `build_x64\RelWithDebInfo\`.
 
-Suggested reading to get up and running:
-
-* [Getting started](https://github.com/obsproject/obs-plugintemplate/wiki/Getting-Started)
-* [Build system requirements](https://github.com/obsproject/obs-plugintemplate/wiki/Build-System-Requirements)
-* [Build system options](https://github.com/obsproject/obs-plugintemplate/wiki/CMake-Build-System-Options)
-
-## GitHub Actions & CI
-
-Default GitHub Actions workflows are available for the following repository actions:
-
-* `push`: Run for commits or tags pushed to `master` or `main` branches.
-* `pr-pull`: Run when a Pull Request has been pushed or synchronized.
-* `dispatch`: Run when triggered by the workflow dispatch in GitHub's user interface.
-* `build-project`: Builds the actual project and is triggered by other workflows.
-* `check-format`: Checks CMake and plugin source code formatting and is triggered by other workflows.
-
-The workflows make use of GitHub repository actions (contained in `.github/actions`) and build scripts (contained in `.github/scripts`) which are not needed for local development, but might need to be adjusted if additional/different steps are required to build the plugin.
-
-### Retrieving build artifacts
-
-Successful builds on GitHub Actions will produce build artifacts that can be downloaded for testing. These artifacts are commonly simple archives and will not contain package installers or installation programs.
-
-### Building a Release
-
-To create a release, an appropriately named tag needs to be pushed to the `main`/`master` branch using semantic versioning (e.g., `12.3.4`, `23.4.5-beta2`). A draft release will be created on the associated repository with generated installer packages or installation programs attached as release artifacts.
-
-## Signing and Notarizing on macOS
-
-Basic concepts of codesigning and notarization on macOS are explained in the correspodning [Wiki article](https://github.com/obsproject/obs-plugintemplate/wiki/Codesigning-On-macOS) which has a specific section for the [GitHub Actions setup](https://github.com/obsproject/obs-plugintemplate/wiki/Codesigning-On-macOS#setting-up-code-signing-for-github-actions).
+## Technical Information
+- **Language**: C / Win32 API / OBS Frontend API.
+- **Platform**: Windows x64.
+- **Compiler**: MSVC (Visual Studio 17 2022).
