@@ -3,10 +3,23 @@
 A simple OBS plugin for Windows that displays a small red circle overlay in the top-right corner of your screen whenever you are recording. This provides visual status feedback even while playing games in fullscreen mode without a second monitor.
 
 ## Features
+- **Fullscreen Detection**: The indicator only appears when a fullscreen game is the active foreground window.
+- **200ms Polling**: Checks for fullscreen status 5 times per second for high responsiveness (e.g., immediate removal on Alt+F4 or Alt+Tab).
 - **Visual Feedback**: Displays a 15x15 red circle at the top-right of your primary screen.
-- **Automatic**: Appears when recording starts and disappears when it stops.
+- **Automatic Recording Sync**: Only active while OBS is recording.
 - **Topmost Overlay**: Stays on top of most windows.
 - **Transparent & Click-Through**: Won't interfere with mouse clicks or game interactions.
+
+## Changelog
+### v1.1.0 (Current)
+- **Added Fullscreen Detection**: The indicator now intelligently shows/hides based on whether a fullscreen game is in the foreground.
+- **200ms Polling System**: Improved responsiveness for Alt+F4, Alt+Tab, and application exits.
+- **Automatic Cleanup**: Disappears immediately when switching to the desktop or non-game windows.
+
+### v1.0.0
+- Initial Release.
+- 15x15 red circle indicator with smooth GDI drawing.
+- Basic recording start/stop synchronization.
 
 ## Installation
 1.  Go to the **[Releases](https://github.com/guitarmuggle/obs-plugin-reddot/releases)** section of this repository.
