@@ -2,6 +2,8 @@
 
 A simple OBS plugin for Windows that displays a small red circle overlay in the top-right corner of your screen whenever you are recording. This provides visual status feedback even while playing games in fullscreen mode without a second monitor.
 
+![RedDot Sample](reddot-sample.jpg)
+
 ## Features
 - **Fullscreen Detection**: The indicator only appears when a fullscreen game is the active foreground window.
 - **200ms Polling**: Checks for fullscreen status 5 times per second for high responsiveness (e.g., immediate removal on Alt+F4 or Alt+Tab).
