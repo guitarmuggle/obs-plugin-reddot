@@ -1,0 +1,14 @@
+.controller.fight-stick {
+    background: url(https://cdn.jsdelivr.net/gh/guitarmuggle/obs-plugin-reddot/assets/base_no_label.svg) center no-repeat !important;
+    height: 534px;
+    width: 1122px;
+}
+
+.fight-stick .p0:after {
+  content: '' !important;
+}
+
+.fight-stick .back,
+.fight-stick .start {
+  display :none !important;
+}
